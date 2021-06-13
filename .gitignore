@@ -1,5 +1,5 @@
 __pycache__/
 build/
 dist/
-*.pyc
 fzf_dirhistory.egg-info/
+*.pyc

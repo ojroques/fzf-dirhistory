@@ -9,9 +9,9 @@ pip3 install --user fzf-dirhistory
 ```
 
 ## Usage (with Bash)
-Add this to your `.bashrc`:
+Add this to your `.bashrc` to log directories as you visit them:
 ```bash
-PROMPT_COMMAND='python3 -m fzfdirhist log $(pwd)'
+PROMPT_COMMAND='python3 -m fzfdirhist log "$(pwd)"'
 ```
 
 Then add this function to call FZF with the history file as input:
@@ -23,8 +23,8 @@ __fzf_dirhistory__() {
 }
 ```
 
-Calling `__fzf_dirhistory__` will insert the selected entry into the command
-line. You may want to map that function (here to `ALT-H`):
+Calling `__fzf_dirhistory__` will insert the selected entry onto the command
+line. You may want to map that function (here to `ALT-H` denoted by `\eh`):
 ```bash
 bind -m emacs-standard -x '"\eh": __fzf_dirhistory__'
 bind -m vi-command -x '"\eh": __fzf_dirhistory__'
