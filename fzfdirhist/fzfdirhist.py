@@ -5,7 +5,7 @@ from pathlib import Path
 
 DIR_HISTORY_FILE = Path(environ.get("DIR_HISTORY_FILE",
                                     "~/.dir_history")).expanduser()
-DIR_HISTORY_MAX = environ.get("DIR_HISTORY_MAX", 100)
+DIR_HISTORY_SIZE = int(environ.get("DIR_HISTORY_SIZE", "100"))
 
 
 def log_dir(dir):
@@ -22,7 +22,7 @@ def log_dir(dir):
             return
 
         f.seek(0)
-        start = 1 - DIR_HISTORY_MAX if len(history) >= DIR_HISTORY_MAX else 0
+        start = 1 - DIR_HISTORY_SIZE if len(history) >= DIR_HISTORY_SIZE else 0
 
         for d in history[start:]:
             if d.strip() != dir:

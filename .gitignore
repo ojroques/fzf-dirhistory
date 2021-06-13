@@ -2,4 +2,4 @@ __pycache__/
 build/
 dist/
 *.pyc
-dirhistory.egg-info/
+fzf_dirhistory.egg-info/
