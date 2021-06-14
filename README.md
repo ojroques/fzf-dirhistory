@@ -16,19 +16,16 @@ PROMPT_COMMAND='python3 -m fzfdirhist log "$(pwd)"'
 
 Then add this function to call FZF with the history file as input:
 ```bash
-__fzf_dirhistory__() {
-  local cmd=$(python3 -m fzfdirhist show | fzf --height=40% --reverse +m | while read -r item; do printf "%q " "$item"; done && echo)
-  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$cmd${READLINE_LINE:$READLINE_POINT}"
-  READLINE_POINT=$(( READLINE_POINT + ${#cmd} ))
+fdh() {
+  local dir=$(python3 -m fzfdirhist show | fzf --height=40% --reverse +m)
+  cd "$dir"
 }
 ```
 
-Calling `__fzf_dirhistory__` will insert the selected entry onto the command
-line. You may want to map that function (here to `ALT-H` denoted by `\eh`):
+Calling `fdh` will jump to the selected location. You may want to map that
+function (here to `ALT-H` denoted by `\eh`):
 ```bash
-bind -m emacs-standard -x '"\eh": __fzf_dirhistory__'
-bind -m vi-command -x '"\eh": __fzf_dirhistory__'
-bind -m vi-insert -x '"\eh": __fzf_dirhistory__'
+bind '"\eh": "\C-k\C-u fdh\n"'
 ```
 
 ## Configuration
